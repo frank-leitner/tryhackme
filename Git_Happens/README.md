@@ -33,9 +33,9 @@ The options I use are the following:
 
 Without any argument specifying the ports, nmap scans the 1000 most common ports. If you want to find out more, look at the file `/usr`/share/nmap/nmap-services`. 
 
-The result comes back showing just one port open:
+The result comes back showing just one port open, a web server on port 80. Much more interesting, the script http-git shows that there is a git repository in the web root:
 
-![nmap result reveals git repository](img/nmap.png)
+![nmap script http-git reveals a git repository on web root](img/nmap.png)
 
 The web page is just a login screen:
 
@@ -49,7 +49,7 @@ It also contains some obfuscated JavaScript which I ignore for now. Nmap showed 
 
 First I verify that the directory is indeed a git repository by opening it in the browser:
 
-![](img/git_repo.png)
+![git_repo](img/git_repo.png)
 
 The next step is to download the full repository. Directory listing is on so I can use the trusty `wget` for the job:
 
@@ -83,6 +83,6 @@ I check out this commit to see the files at that point in time. My local working
 git checkout 395e087 --force
 ```
 
-![](img/reveal_of_password.png)
+![The old version of the file reveals the password](img/reveal_of_password.png)
 
 I submit the password and the room is solved. 
